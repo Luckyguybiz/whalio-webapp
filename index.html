@@ -1,127 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Whalio - Become the Master of AI</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <title>Whalio - Become the Master of AI</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  </head>
 <body>
-<div id="app-landing" class="page active">
-  <header class="header"><div class="container"><div class="header-inner">
-    <a href="#" class="logo">whalio<span class="logo-icon">🐳</span></a>
-    <nav class="nav"><a href="#" class="nav-link active">Home</a><a href="#blog" class="nav-link">Blog</a></nav>
-    <div class="header-actions"><button class="btn-login" onclick="showPage('app-auth')">Login</button><button class="btn-signup" onclick="startQuiz()">Sign Up</button></div>
-    <button class="burger-menu" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
-  </div></div></header>
-  <div class="mobile-menu" id="mobileMenu"><a href="#">Home</a><a href="#blog">Blog</a><button class="btn-login" onclick="showPage('app-auth')">Login</button><button class="btn-signup" onclick="startQuiz()">Sign Up</button></div>
-  <section class="hero"><div class="container"><div class="hero-content">
-    <h1 class="hero-title">Become the<br>Master of <span class="text-blue">AI</span></h1>
-    <p class="hero-subtitle">Learn how AI can increase your income<br>..and improve your life</p>
-    <button class="btn-primary btn-large" onclick="startQuiz()">Start Free Trial ›</button>
-  </div></div></section>
-  <section class="quote-section"><div class="container"><p class="quote-text">"The interactive nature of the course kept me engaged, making learning fun"</p></div></section>
-  <section class="features-section"><div class="container">
-    <h2 class="section-title">Why people love <span class="text-blue">Whalio</span></h2>
-    <p class="section-subtitle">Learn, build, and innovate in the AI world</p>
-    <div class="features-grid"><div class="features-list">
-      <div class="feature-item"><div class="feature-icon">✓</div><div><h3>Quick and easy learning</h3><p>Short lessons for busy schedules</p></div></div>
-      <div class="feature-item"><div class="feature-icon">✓</div><div><h3>Multiple formats</h3><p>Video, text, quizzes, projects</p></div></div>
-      <div class="feature-item"><div class="feature-icon">✓</div><div><h3>Accessible anywhere</h3><p>Learn on any device</p></div></div>
-      <div class="feature-item"><div class="feature-icon">✓</div><div><h3>Real-world applications</h3><p>Practical skills you can use</p></div></div>
-    </div></div>
-  </div></section>
-  <section class="paths-section"><div class="container">
-    <h2 class="section-title">Choose Your Path</h2>
-    <div class="paths-grid">
-      <div class="path-card"><div class="path-icon">💬</div><h3>ChatGPT</h3><p>Master conversational AI</p></div>
-      <div class="path-card"><div class="path-icon">🎨</div><h3>Midjourney</h3><p>Create stunning AI art</p></div>
-      <div class="path-card"><div class="path-icon">✍️</div><h3>Jasper AI</h3><p>AI-powered writing</p></div>
-      <div class="path-card"><div class="path-icon">🖼️</div><h3>DALL-E</h3><p>Generate amazing images</p></div>
-    </div>
-  </div></section>
-  <section class="cta-mid"><div class="container"><h2>Increase your income potential with <span class="text-blue">Whalio</span></h2><button class="btn-primary" onclick="startQuiz()">Start Now for free ›</button></div></section>
-  <section class="how-it-works"><div class="container">
-    <h2 class="section-title">How <span class="text-blue">Whalio</span> works</h2>
-    <div class="steps-grid">
-      <div class="step-card"><div class="step-number">1</div><h3>Get your learning plan</h3><p>Take a quiz for personalized path</p></div>
-      <div class="step-card"><div class="step-number">2</div><h3>Learn skills you need</h3><p>Follow bite-sized AI modules</p></div>
-      <div class="step-card"><div class="step-number">3</div><h3>Master AI for goals</h3><p>Apply with exercises, earn certificates</p></div>
-    </div>
-  </div></section>
-  <section class="stats-section"><div class="container">
-    <h2 class="section-title"><span class="text-blue">Whalio</span> in action</h2>
-    <div class="stats-grid">
-      <div class="stat-item"><div class="stat-number">554k+</div><p>Users worldwide</p></div>
-      <div class="stat-item"><div class="stat-number">3 732k+</div><p>Modules completed</p></div>
-      <div class="stat-item"><div class="stat-number">59k+</div><p>5-star reviews</p></div>
-    </div>
-  </div></section>
-  <section class="certificate-section"><div class="container"><h2>Earn a certificate that proves your <span class="text-blue">AI skills</span></h2><button class="btn-primary" onclick="startQuiz()">Get Certificate Today ›</button></div></section>
-  <section class="faq-section" id="faq"><div class="container">
-    <h2 class="section-title">FAQ</h2>
-    <div class="faq-list">
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What is Whalio? <span>+</span></button><div class="faq-answer"><p>AI learning platform for ChatGPT, Midjourney, DALL-E, Jasper AI.</p></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">How does learning work? <span>+</span></button><div class="faq-answer"><p>Quiz → personalized path → bite-sized modules.</p></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Is Whalio free? <span>+</span></button><div class="faq-answer"><p>Free trial with introductory modules.</p></div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Can I earn certificates? <span>+</span></button><div class="faq-answer"><p>Yes, upon completing mastery paths.</p></div></div>
-    </div>
-  </div></section>
-  <section class="join-section"><div class="container"><h2>Join 300,000+ learners</h2><p class="trustpilot">More than 4 stars on Trustpilot</p></div></section>
-  <section class="final-cta"><div class="container"><h2>Start your AI journey with <span class="text-blue">Whalio</span> today!</h2><button class="btn-primary btn-large" onclick="startQuiz()">Start Now for Free ›</button></div></section>
-  <footer class="footer"><div class="container"><div class="footer-inner"><a href="#" class="logo">whalio🐳</a><div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#faq">FAQ</a></div></div><p class="footer-copy">© 2025 Whalio. All rights reserved.</p></div></footer>
-</div>
+
+  <!-- ===== LANDING PAGE ===== -->
+  <div id="app-landing" class="page active">
+      <header class="header"><div class="container"><div class="header-inner">
+            <a href="#" class="logo">whalio<span class="logo-icon">🐳</span>span></a>a>
+            <nav class="nav"><a href="#" class="nav-link active">Home</a>a><a href="#blog" class="nav-link">Blog</a>a></nav>nav>
+            <div class="header-actions"><button class="btn-login" onclick="showPage('app-auth')">Login</button>button><button class="btn-signup" onclick="startQuiz()">Sign Up</button>button></div>div>
+            <button class="burger-menu" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>button>
+      </div>div></div>div></header>header>
+  
+    <div class="mobile-menu" id="mobileMenu"><a href="#">Home</a>a><a href="#blog">Blog</a>a><button class="btn-login" onclick="showPage('app-auth')">Login</button>button><button class="btn-signup" onclick="startQuiz()">Sign Up</button>button></div>div>
+  
+    <section class="hero"><div class="container"><div class="hero-content">
+        <h1 class="hero-title">Become the<br>Master of <span class="text-blue">AI</span></h1>h1>
+        <p class="hero-subtitle">Learn how AI can increase your income<br>..and improve your life</p>p>
+        <button class="btn-primary btn-large" onclick="startQuiz()">Start Free Trial ›</button>button>
+    </div>div></div>div></section>section>
+  
+    <section class="quote-section"><div class="container"><p class="quote-text">"The interactive nature of the course kept me engaged, making learning fun"</p>p></div>div></section>section>
+  
+    <section class="features-section"><div class="container">
+        <h2 class="section-title">Why people love <span class="text-blue">Whalio</span></h2>h2>
+        <p class="section-subtitle">Learn, build, and innovate in the AI world</p>p>
+        <div class="features-grid"><div class="features-list">
+              <div class="feature-item"><div class="feature-icon">✓</div>div><div><h3>Quick and easy learning</h3><p>Short lessons for busy schedules</p></div></div>
+              <div class="feature-item"><div class="feature-icon">✓</div><div><h3>Multiple formats</h3><p>Video, text, quizzes, projects</p></div></div>
+              <div class="feature-item"><div class="feature-icon">✓</div><div><h3>Accessible anywhere</h3><p>Learn on any device</p></div></div>
+              <div class="feature-item"><div class="feature-icon">✓</div><div><h3>Real-world applications</h3><p>Practical skills you can use</p></div></div>
+        </div></div>
+    </div></section>section>
+  
+    <section class="paths-section"><div class="container">
+        <h2 class="section-title">Choose Your Path</h2>
+        <div class="paths-grid">
+              <div class="path-card"><div class="path-icon">💬</div><h3>ChatGPT</h3><p>Master conversational AI</p></div>
+              <div class="path-card"><div class="path-icon">🎨</div><h3>Midjourney</h3><p>Create stunning AI art</p></div>
+              <div class="path-card"><div class="path-icon">✍️</div><h3>Jasper AI</h3><p>AI-powered writing</p></div>
+              <div class="path-card"><div class="path-icon">🖼️</div><h3>DALL-E</h3><p>Generate amazing images</p></div>
+        </div>
+    </div></section>section>
+  
+    <section class="cta-mid"><div class="container"><h2>Increase your income potential with <span class="text-blue">Whalio</span>span></h2><button class="btn-primary" onclick="startQuiz()">Start Now for free ›</button>button></div></section>section>
+  
+    <section class="how-it-works"><div class="container">
+        <h2 class="section-title">How <span class="text-blue">Whalio</span>span> works</h2>
+        <div class="steps-grid">
+              <div class="step-card"><div class="step-number">1</div><h3>Get your learning plan</h3><p>Take a quiz for personalized path</p></div>
+              <div class="step-card"><div class="step-number">2</div><h3>Learn skills you need</h3><p>Follow bite-sized AI modules</p></div>
+              <div class="step-card"><div class="step-number">3</div><h3>Master AI for goals</h3><p>Apply with exercises, earn certificates</p></div>
+        </div>
+    </div></section>section>
+  
+    <section class="stats-section"><div class="container">
+        <h2 class="section-title"><span class="text-blue">Whalio</span>span> in action</h2>
+        <div class="stats-grid">
+              <div class="stat-item"><div class="stat-number">554k+</div><p>Users worldwide</p></div>
+              <div class="stat-item"><div class="stat-number">3 732k+</div><p>Modules completed</p></div>
+              <div class="stat-item"><div class="stat-number">59k+</div><p>5-star reviews</p></div>
+        </div>
+    </div></section>section>
+  
+    <section class="certificate-section"><div class="container"><h2>Earn a certificate that proves your <span class="text-blue">AI skills</span>span></h2><button class="btn-primary" onclick="startQuiz()">Get Certificate Today ›</button>button></div></section>section>
+  
+    <section class="faq-section" id="faq"><div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq-list">
+              <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What is Whalio? <span>+</span></button>button><div class="faq-answer"><p>AI learning platform for ChatGPT, Midjourney, DALL-E, Jasper AI.</p></div></div>
+              <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">How does learning work? <span>+</span></button>button><div class="faq-answer"><p>Quiz → personalized path → bite-sized modules.</p></div></div>
+              <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Is Whalio free? <span>+</span></button>button><div class="faq-answer"><p>Free trial with introductory modules. Premium unlocks all content.</p></div></div>
+              <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Can I earn certificates? <span>+</span></button>button><div class="faq-answer"><p>Yes, upon completing mastery paths.</p></div></div>
+        </div>
+    </div></section>section>
+  
+    <section class="join-section"><div class="container"><h2>Join 300,000+ learners</h2><p class="trustpilot">More than 4 stars on Trustpilot</p></div></section>section>
+  
+    <section class="final-cta"><div class="container"><h2>Start your AI journey with <span class="text-blue">Whalio</span>span> today!</h2><button class="btn-primary btn-large" onclick="startQuiz()">Start Now for Free ›</button>button></div></section>section>
+  
+    <footer class="footer"><div class="container"><div class="footer-inner"><a href="#" class="logo">whalio🐳</a>a><div class="footer-links"><a href="#">Privacy</a>a><a href="#">Terms</a>a><a href="#faq">FAQ</a>a></div></div><p class="footer-copy">© 2025 Whalio. All rights reserved.</p></div></footer>footer>
+  </div>
+
+<!-- ===== QUIZ ===== -->
 <div id="app-quiz" class="page quiz-overlay"><div class="quiz-container">
-  <div class="quiz-header"><button class="quiz-back" onclick="quizBack()">←</button><span class="logo">whalio🐳</span><span class="quiz-step" id="quizStep">1/10</span></div>
+  <div class="quiz-header"><button class="quiz-back" onclick="quizBack()">←</button>button><span class="logo">whalio🐳</span>span><span class="quiz-step" id="quizStep">1/10</span>span></div>
   <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
   <div class="quiz-body" id="quizBody"></div>
 </div></div>
+
+<!-- ===== PAYWALL ===== -->
+<div id="app-paywall" class="page">
+  <div class="paywall-container">
+      <div class="paywall-header"><button class="quiz-back" onclick="showPage('app-landing')">←</button>button><span class="logo">whalio🐳</span>span></div>
+      <div class="paywall-content">
+            <h2 class="paywall-title">Your Personal Plan is Ready!</h2>
+            <p class="paywall-sub">Unlock full access to all AI mastery paths</p>
+            <div class="paywall-features">
+                    <div class="pw-feature">✓ 4 Complete AI Courses</div>
+                    <div class="pw-feature">✓ ChatGPT, Midjourney, DALL-E, Jasper</div>
+                    <div class="pw-feature">✓ Certificates of Completion</div>
+                    <div class="pw-feature">✓ AI Chat Assistant</div>
+                    <div class="pw-feature">✓ New content weekly</div>
+            </div>
+            <div class="paywall-plans">
+                    <div class="plan-card" id="planMonthly" onclick="selectPlan('monthly')">
+                              <div class="plan-name">Monthly</div>
+                              <div class="plan-price">$9.99<span>/mo</span></div>
+                    </div>
+                    <div class="plan-card plan-popular selected" id="planYearly" onclick="selectPlan('yearly')">
+                              <div class="plan-badge">BEST VALUE</div>
+                              <div class="plan-name">Annual</div>
+                              <div class="plan-price">$4.99<span>/mo</span></div>
+                              <div class="plan-save">Save 50% — billed $59.99/year</div>
+                    </div>
+            </div>
+            <button class="btn-primary btn-full btn-large" onclick="handlePayment()">Start 7-Day Free Trial</button>button>
+            <p class="paywall-note">Cancel anytime. No charge during trial.</p>
+            <p class="paywall-skip"><a href="#" onclick="skipPaywall();return false">Continue with limited access →</a>a></p>
+      </div>
+  </div>
+</div>
+
+<!-- ===== AUTH - LOGIN ===== -->
 <div id="app-auth" class="page"><div class="auth-container">
   <div class="auth-logo"><span class="logo">whalio🐳</span></div>
   <h2 class="auth-title">Welcome Back</h2>
+  <div id="authError" class="auth-error" style="display:none"></div>
   <form class="auth-form" onsubmit="handleLogin(event)">
-    <div class="input-group input-pink"><span class="input-icon">✉</span><input type="email" placeholder="Your email" required id="loginEmail"></div>
-    <div class="input-group input-pink"><span class="input-icon">🔒</span><input type="password" placeholder="Your password" required id="loginPassword"><button type="button" class="toggle-pw" onclick="togglePw(this)">👁</button></div>
-    <a href="#" class="forgot-link">Forgot Password?</a>
-    <button type="submit" class="btn-primary btn-full">Sign in</button>
-  </form>
-  <p class="auth-switch">Don't have an account? <a href="#" onclick="startQuiz();return false">Start the quiz</a></p>
+      <div class="input-group input-pink"><span class="input-icon">✉</span><input type="email" placeholder="Your email" required id="loginEmail"></div>
+      <div class="input-group input-pink"><span class="input-icon">🔒</span><input type="password" placeholder="Your password" required id="loginPassword"><button type="button" class="toggle-pw" onclick="togglePw(this)">👁</button>button></div>
+      <a href="#" class="forgot-link" onclick="showPage('app-forgot');return false">Forgot Password?</a>a>
+      <button type="submit" class="btn-primary btn-full" id="loginBtn">Sign in</button>button>
+  </form>form>
+  <p class="auth-switch">Don't have an account? <a href="#" onclick="showPage('app-register');return false">Sign up</a>a></p>
 </div></div>
+
+<!-- ===== AUTH - REGISTER ===== -->
+<div id="app-register" class="page"><div class="auth-container">
+  <div class="auth-logo"><span class="logo">whalio🐳</span></div>
+  <h2 class="auth-title">Create Account</h2>
+  <div id="regError" class="auth-error" style="display:none"></div>
+  <form class="auth-form" onsubmit="handleRegister(event)">
+      <div class="input-group input-pink"><span class="input-icon">👤</span><input type="text" placeholder="Your name" required id="regName"></div>
+      <div class="input-group input-pink"><span class="input-icon">✉</span><input type="email" placeholder="Your email" required id="regEmail"></div>
+      <div class="input-group input-pink"><span class="input-icon">🔒</span><input type="password" placeholder="Create password (min 6 chars)" required id="regPassword" minlength="6"><button type="button" class="toggle-pw" onclick="togglePw(this)">👁</button>button></div>
+      <button type="submit" class="btn-primary btn-full" id="regBtn">Create Account</button>button>
+  </form>form>
+  <p class="auth-switch">Already have an account? <a href="#" onclick="showPage('app-auth');return false">Sign in</a>a></p>
+</div></div>
+
+<!-- ===== FORGOT PASSWORD ===== -->
+<div id="app-forgot" class="page"><div class="auth-container">
+  <div class="auth-logo"><span class="logo">whalio🐳</span></div>
+  <h2 class="auth-title">Reset Password</h2>
+  <p class="auth-sub">Enter your email and we'll send you a reset link</p>
+  <div id="forgotMsg" class="auth-msg" style="display:none"></div>
+  <form class="auth-form" onsubmit="handleForgotPassword(event)">
+      <div class="input-group input-pink"><span class="input-icon">✉</span><input type="email" placeholder="Your email" required id="forgotEmail"></div>
+      <button type="submit" class="btn-primary btn-full" id="forgotBtn">Send Reset Link</button>button>
+  </form>form>
+  <p class="auth-switch"><a href="#" onclick="showPage('app-auth');return false">← Back to Login</a>a></p>
+</div></div>
+
+<!-- ===== DASHBOARD ===== -->
 <div id="app-dashboard" class="page"><nav class="dash-nav"><div class="container"><div class="dash-nav-inner">
-  <a href="#" class="logo">whalio🐳</a>
-  <div class="dash-tabs"><a href="#" class="dash-tab">📚 Guides</a><a href="#" class="dash-tab">🎯 Challenges</a><a href="#" class="dash-tab active">🤖 AI Tools</a><a href="#" class="dash-tab" onclick="showPage('app-profile');return false">👤 Profile</a></div>
-</div></div></nav>
-<div class="dash-content"><div class="container">
-  <div class="dash-banner"><span class="badge">AI MASTERY</span><h3>Pick up where you left off</h3><h2>ChatGPT</h2><div class="progress-wrap"><div class="progress-fill" style="width:57%"></div></div><button class="btn-primary" onclick="openModule('chatgpt')">Continue Learning</button></div>
-  <div class="dash-section"><div class="section-head"><h2>Your Mastery path</h2><a href="#" class="see-all">All paths</a></div>
-    <div class="mastery-grid">
-      <div class="mastery-card" onclick="openModule('chatgpt')"><div class="m-icon">💬</div><h3>ChatGPT</h3><p>57%</p></div>
-      <div class="mastery-card" onclick="openModule('midjourney')"><div class="m-icon">🎨</div><h3>Midjourney</h3><p>0%</p></div>
-      <div class="mastery-card" onclick="openModule('jasper')"><div class="m-icon">✍️</div><h3>Jasper AI</h3><p>0%</p></div>
-      <div class="mastery-card" onclick="openModule('dalle')"><div class="m-icon">🖼️</div><h3>DALL-E</h3><p>0%</p></div>
-    </div>
+  <a href="#" class="logo">whalio🐳</a>a>
+  <div class="dash-tabs">
+      <a href="#" class="dash-tab active" onclick="showPage('app-dashboard');return false">📚 Courses</a>a>
+      <a href="#" class="dash-tab" onclick="showPage('app-profile');return false">👤 Profile</a>a>
   </div>
-  <div class="dash-section"><h2>Recommended</h2><div class="rec-grid"><div class="rec-card"><h4>First Steps to Profit with AI</h4><p>5 lessons</p></div><div class="rec-card"><h4>Earning Through ChatGPT</h4><p>12 lessons</p></div></div></div>
+</div></div></nav>nav>
+
+<div class="dash-content"><div class="container">
+  <div class="dash-banner">
+      <span class="badge">AI MASTERY</span>
+      <h3>Pick up where you left off</h3>
+      <h2 id="dashContinueTitle">ChatGPT</h2>
+      <div class="progress-wrap"><div class="progress-fill" id="dashProgress" style="width:0%"></div></div>
+      <button class="btn-primary" id="dashContinueBtn" onclick="continueLearning()">Continue Learning</button>button>
+  </div>
+
+  <div class="dash-section"><div class="section-head"><h2>Your Mastery Paths</h2></div>
+      <div class="mastery-grid">
+            <div class="mastery-card" onclick="openModule('chatgpt')"><div class="m-icon">💬</div><h3>ChatGPT</h3><p id="prog-chatgpt">0%</p></div>
+            <div class="mastery-card" onclick="openModule('midjourney')"><div class="m-icon">🎨</div><h3>Midjourney</h3><p id="prog-midjourney">0%</p></div>
+            <div class="mastery-card" onclick="openModule('jasper')"><div class="m-icon">✍️</div><h3>Jasper AI</h3><p id="prog-jasper">0%</p></div>
+            <div class="mastery-card" onclick="openModule('dalle')"><div class="m-icon">🖼️</div><h3>DALL-E</h3><p id="prog-dalle">0%</p></div>
+      </div>
+  </div>
+
+  <div class="dash-section"><h2>Recommended</h2>
+      <div class="rec-grid">
+            <div class="rec-card" onclick="openModule('chatgpt')"><h4>First Steps to Profit with AI</h4><p>5 lessons</p></div>
+            <div class="rec-card" onclick="openModule('midjourney')"><h4>Create Art with Midjourney</h4><p>8 lessons</p></div>
+      </div>
+  </div>
 </div></div></div>
+
+<!-- ===== MODULE / LESSONS ===== -->
 <div id="app-module" class="page"><div class="module-wrap">
-  <div class="module-header"><button class="mod-back" onclick="showPage('app-dashboard')">←</button><span id="modTitle">Content Ideas</span><div class="mod-actions"><button onclick="newChat()">new chat</button><button>⚙</button></div></div>
-  <div class="module-info"><div class="mod-icon">💡</div><div><h3 id="modName">Content Ideas</h3><p id="modDesc">Generate content with AI</p></div></div>
-  <div class="module-chat" id="moduleChat"><div class="chat-empty"><p>No messages yet.</p></div></div>
-  <div class="module-prompts"><button class="prompt-pill" onclick="usePrompt(this)">Prompt example 1</button><button class="prompt-pill" onclick="usePrompt(this)">Prompt example 2</button></div>
-  <div class="module-input"><input type="text" id="modInput" placeholder="Write a message..." onkeydown="if(event.key==='Enter')sendMsg()"><button class="send-btn" onclick="sendMsg()">➤</button></div>
+  <div class="module-header">
+      <button class="mod-back" onclick="showPage('app-dashboard')">←</button>button>
+      <span id="modTitle">Module</span>
+      <div class="mod-progress-small"><span id="modProgressText">0/0</span></div>
+  </div>
+  <div class="module-lessons-list" id="moduleLessonsList"></div>
 </div></div>
+
+<!-- ===== LESSON VIEW ===== -->
+<div id="app-lesson" class="page"><div class="lesson-wrap">
+  <div class="lesson-header">
+      <button class="mod-back" onclick="backToModule()">←</button>button>
+      <span id="lessonTitle">Lesson</span>
+      <span id="lessonStep">1/5</span>
+  </div>
+  <div class="lesson-progress"><div class="lesson-progress-bar" id="lessonProgressBar"></div></div>
+  <div class="lesson-content" id="lessonContent"></div>
+  <div class="lesson-nav">
+      <button class="btn-lesson-prev" id="lessonPrev" onclick="prevLessonStep()">← Previous</button>button>
+      <button class="btn-primary" id="lessonNext" onclick="nextLessonStep()">Next →</button>button>
+  </div>
+</div></div>
+
+<!-- ===== PROFILE ===== -->
 <div id="app-profile" class="page"><nav class="dash-nav"><div class="container"><div class="dash-nav-inner">
-  <a href="#" class="logo">whalio🐳</a>
-  <div class="dash-tabs"><a href="#" class="dash-tab" onclick="showPage('app-dashboard');return false">📚 Guides</a><a href="#" class="dash-tab" onclick="showPage('app-dashboard');return false">🎯 Challenges</a><a href="#" class="dash-tab" onclick="showPage('app-dashboard');return false">🤖 AI Tools</a><a href="#" class="dash-tab active">👤 Profile</a></div>
-</div></div></nav>
+  <a href="#" class="logo">whalio🐳</a>a>
+  <div class="dash-tabs">
+      <a href="#" class="dash-tab" onclick="showPage('app-dashboard');return false">📚 Courses</a>a>
+      <a href="#" class="dash-tab active">👤 Profile</a>a>
+  </div>
+</div></div></nav>nav>
 <div class="profile-content"><div class="container">
-  <h2 id="pName">TestMail</h2><p id="pEmail">test@gmail.com</p>
-  <div class="profile-row"><a href="#">📋 Help →</a></div><div class="profile-row"><a href="#">⚙ Settings →</a></div>
-  <h3>Streak details</h3><div class="streak-grid"><div class="streak-box"><span>Current streak</span><span>🔥1</span></div><div class="streak-box"><span>Longest streak</span><span>🔥1</span></div></div>
-  <h3>Certificates</h3><div class="cert-list"><div class="cert-row"><span>ChatGPT</span><span class="cert-pct blue">57%</span></div><div class="cert-row"><span>DALL-E</span><span class="cert-pct green">100%</span></div><div class="cert-row"><span>🔒 Midjourney</span><span class="cert-pct">0%</span></div><div class="cert-row"><span>🔒 Jasper AI</span><span class="cert-pct">0%</span></div></div>
-  <button class="btn-logout" onclick="handleLogout()">🚪 Log out</button><p class="profile-copy">© 2025 Whalio</p>
+  <h2 id="pName">User</h2><p id="pEmail">user@email.com</p>
+  <div id="subscriptionBadge" class="sub-badge sub-free">Free Plan</div>
+  <div class="profile-row"><a href="#" onclick="showPage('app-paywall');return false">⭐ Upgrade to Premium →</a>a></div>
+  <div class="profile-row"><a href="#">📋 Help →</a>a></div>
+  <div class="profile-row"><a href="#">⚙ Settings →</a>a></div>
+  <h3>Streak details</h3>
+  <div class="streak-grid"><div class="streak-box"><span>Current streak</span><span id="currentStreak">🔥0</span></div><div class="streak-box"><span>Longest streak</span><span id="longestStreak">🔥0</span></div></div>
+  <h3>Certificates</h3>
+  <div class="cert-list" id="certList">
+      <div class="cert-row"><span>ChatGPT</span><span class="cert-pct" id="cert-chatgpt">0%</span></div>
+      <div class="cert-row"><span>Midjourney</span><span class="cert-pct" id="cert-midjourney">0%</span></div>
+      <div class="cert-row"><span>Jasper AI</span><span class="cert-pct" id="cert-jasper">0%</span></div>
+      <div class="cert-row"><span>DALL-E</span><span class="cert-pct" id="cert-dalle">0%</span></div>
+  </div>
+  <button class="btn-logout" onclick="handleLogout()">🚪 Log out</button>button>
+  <p class="profile-copy">© 2025 Whalio. All rights reserved.</p>
 </div></div></div>
+
+<!-- Firebase Config + App Logic -->
+<script src="js/firebase-config.js"></script>
+<script src="js/lessons-data.js"></script>
 <script src="js/app.js"></script>
-</body></html>
+</body>
+</html>html>
+</body>
